@@ -1,0 +1,639 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B240067C-C1C3-4809-AC0B-3815AF3DDC33}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Client</RootNamespace>
+    <AssemblyName>FUJIMED</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PreferNativeArm64>false</PreferNativeArm64>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>fujimax.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>EA78B6316A118AE25AFAFC137910AC1578B0B73F</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Client_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net-Next.4.0.3\lib\net472\BCrypt.Net-Next.dll</HintPath>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.Core.4.0.230\lib\netstandard2.0\Caliburn.Micro.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Platform, Version=4.0.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.4.0.230\lib\net462\Caliburn.Micro.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Platform.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.4.0.230\lib\net462\Caliburn.Micro.Platform.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=5.2.1.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.5.2.1\lib\net462\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=5.2.1.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.5.2.1\lib\net462\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.9.0.5\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=9.0.0.5, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.9.0.5\lib\net462\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=9.0.0.5, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.9.0.5\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.135\lib\net462\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.6.0\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.6.0\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.6.0\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.0\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Primitives, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Serialization.Primitives.4.3.0\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="ToastNotifications, Version=2.5.1.0, Culture=neutral, PublicKeyToken=e89d9d7314a7c797, processorArchitecture=MSIL">
+      <HintPath>..\packages\ToastNotifications.2.5.1\lib\net40\ToastNotifications.dll</HintPath>
+    </Reference>
+    <Reference Include="ToastNotifications.Messages, Version=2.5.1.0, Culture=neutral, PublicKeyToken=e89d9d7314a7c797, processorArchitecture=MSIL">
+      <HintPath>..\packages\ToastNotifications.Messages.2.5.1\lib\net40\ToastNotifications.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AppEntities\PickUser.cs" />
+    <Compile Include="Domain\CurrencyVNDConverter.cs" />
+    <Compile Include="DTOs\AccountBase.cs" />
+    <Compile Include="DTOs\CustomUserClaims.cs" />
+    <Compile Include="DTOs\Login.cs" />
+    <Compile Include="DTOs\RefreshToken.cs" />
+    <Compile Include="DTOs\Register.cs" />
+    <Compile Include="Entities\Constants\EntityName.cs" />
+    <Compile Include="Domain\BoolToColorConverter.cs" />
+    <Compile Include="Entities\CustomerEntities\Dealer.cs" />
+    <Compile Include="Entities\ExpenseEntities\Expense.cs" />
+    <Compile Include="Entities\ModelEntities\InstrumentLog.cs" />
+    <Compile Include="Entities\ModelEntities\SpareParts.cs" />
+    <Compile Include="Entities\TaskEntities\TaskLog.cs" />
+    <Compile Include="Entities\TicketEntities\LastWeekPendingTicket.cs" />
+    <Compile Include="Entities\TicketEntities\LastWeekTicket.cs" />
+    <Compile Include="Entities\TicketEntities\TicketLog.cs" />
+    <Compile Include="Entities\TicketEntities\TicketReport.cs" />
+    <Compile Include="Entities\TaskEntities\TaskFile.cs" />
+    <Compile Include="Entities\TaskEntities\AppTaskStatus.cs" />
+    <Compile Include="Entities\TaskEntities\TaskPriority.cs" />
+    <Compile Include="Entities\TaskEntities\TaskTicketRelation.cs" />
+    <Compile Include="Entities\TaskEntities\TaskType.cs" />
+    <Compile Include="Entities\CustomerEntities\Contact.cs" />
+    <Compile Include="Entities\ModelEntities\Country.cs" />
+    <Compile Include="Entities\CustomerEntities\Customer.cs" />
+    <Compile Include="Entities\ModelEntities\Instrument.cs" />
+    <Compile Include="Entities\ModelEntities\InstrumentStatus.cs" />
+    <Compile Include="Entities\ModelEntities\ModelGroup.cs" />
+    <Compile Include="Entities\ModelEntities\ModelSpecificationGroup.cs" />
+    <Compile Include="Entities\ModelEntities\ModelType.cs" />
+    <Compile Include="Entities\TicketEntities\Issue.cs" />
+    <Compile Include="Entities\ModelEntities\Manufacturer.cs" />
+    <Compile Include="Entities\ModelEntities\Model.cs" />
+    <Compile Include="Entities\TaskEntities\AppTask.cs" />
+    <Compile Include="Entities\ModelEntities\ModelFile.cs" />
+    <Compile Include="Entities\ModelEntities\ModelSpecification.cs" />
+    <Compile Include="Entities\TicketEntities\Ticket.cs" />
+    <Compile Include="Entities\TicketEntities\TicketFile.cs" />
+    <Compile Include="Entities\TicketEntities\TicketPriority.cs" />
+    <Compile Include="Entities\TicketEntities\TicketServiceType.cs" />
+    <Compile Include="Entities\TicketEntities\TicketSpareParts.cs" />
+    <Compile Include="Entities\TicketEntities\TicketStatus.cs" />
+    <Compile Include="Entities\TicketEntities\TicketTag.cs" />
+    <Compile Include="Entities\TicketEntities\TicketType.cs" />
+    <Compile Include="Entities\UserEntity\SystemRole.cs" />
+    <Compile Include="Entities\UserEntity\User.cs" />
+    <Compile Include="Entities\UserEntity\UserRole.cs" />
+    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Migrations\202506050412194_fist.cs" />
+    <Compile Include="Migrations\202506050412194_fist.Designer.cs">
+      <DependentUpon>202506050412194_fist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202506070227137_EditTicketToHaveQuantitySparePart.cs" />
+    <Compile Include="Migrations\202506070227137_EditTicketToHaveQuantitySparePart.Designer.cs">
+      <DependentUpon>202506070227137_EditTicketToHaveQuantitySparePart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202506071045109_SpareParts.cs" />
+    <Compile Include="Migrations\202506071045109_SpareParts.Designer.cs">
+      <DependentUpon>202506071045109_SpareParts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202506090805327_AddExpense.cs" />
+    <Compile Include="Migrations\202506090805327_AddExpense.Designer.cs">
+      <DependentUpon>202506090805327_AddExpense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202506090905466_FixExpense.cs" />
+    <Compile Include="Migrations\202506090905466_FixExpense.Designer.cs">
+      <DependentUpon>202506090905466_FixExpense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Responses\GeneralResponse.cs" />
+    <Compile Include="Responses\LoginResponse.cs" />
+    <Compile Include="Services\CachesServices.cs" />
+    <Compile Include="Domain\NotEmptyValidationRule.cs" />
+    <Compile Include="Services\Contracts\IUserAccountInterface.cs" />
+    <Compile Include="Services\DatabaseBackupService.cs" />
+    <Compile Include="Services\DeleteDataServices.cs" />
+    <Compile Include="Services\FileServices.cs" />
+    <Compile Include="Services\Implementations\UserAccountService.cs" />
+    <Compile Include="Services\AppNotificationService.cs" />
+    <Compile Include="Services\PasswordHelper.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="ViewModels\Instrument\PickSparePartViewModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="Services\SaveDataServices.cs" />
+    <Compile Include="ViewModels\Customer\CustomerMainViewModel.cs" />
+    <Compile Include="ViewModels\Customer\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\Customer\DealerViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\Instrument\InstrumentDetailViewModel.cs" />
+    <Compile Include="ViewModels\Instrument\InstrumentManagementViewModel.cs" />
+    <Compile Include="ViewModels\Instrument\InstrumentModelViewModel.cs" />
+    <Compile Include="ViewModels\Instrument\InstrumentViewModel.cs" />
+    <Compile Include="ViewModels\IssueView\IssueDetailViewModel.cs" />
+    <Compile Include="ViewModels\IssueView\IssueManagementViewModel.cs" />
+    <Compile Include="ViewModels\IssueView\IssueViewModel.cs" />
+    <Compile Include="ViewModels\LoadingScreenViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ModelSpecification\ModelFileEditViewModel.cs" />
+    <Compile Include="ViewModels\ModelSpecification\ModelFileSelectorViewModel.cs" />
+    <Compile Include="ViewModels\ModelSpecification\ModelSpecificationViewModel.cs" />
+    <Compile Include="ViewModels\ModelSpecification\ModelViewModel.cs" />
+    <Compile Include="ViewModels\Instrument\NewEditInstrumentViewModel.cs" />
+    <Compile Include="ViewModels\Instrument\SparePartManagementViewModel.cs" />
+    <Compile Include="ViewModels\Ticket\TicketPendingViewModel.cs" />
+    <Compile Include="ViewModels\Ticket\NewEditTicketViewModel.cs" />
+    <Compile Include="Domain\BooleanToVisibilityConverter.cs" />
+    <Compile Include="ViewModels\DataViewerViewModel.cs" />
+    <Compile Include="ViewModels\IssueView\NewIssueWindowViewModel.cs" />
+    <Compile Include="ViewModels\ModelSpecification\SpecificationViewModel.cs" />
+    <Compile Include="ViewModels\Ticket\TicketDetailViewModel.cs" />
+    <Compile Include="ViewModels\Ticket\TicketManagementViewModel.cs" />
+    <Compile Include="ViewModels\Ticket\TicketViewModel.cs" />
+    <Compile Include="ViewModels\User\AccountViewModel.cs" />
+    <Compile Include="ViewModels\User\EditAccountViewModel.cs" />
+    <Compile Include="ViewModels\User\UserManagementViewModel.cs" />
+    <Compile Include="Views\Instrument\SparePartManagementView.xaml.cs">
+      <DependentUpon>SparePartManagementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Instrument\PickSparePartView.xaml.cs">
+      <DependentUpon>PickSparePartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\EditAccountView.xaml.cs">
+      <DependentUpon>EditAccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\AccountView.xaml.cs">
+      <DependentUpon>AccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\CustomerMainView.xaml.cs">
+      <DependentUpon>CustomerMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\CustomerView.xaml.cs">
+      <DependentUpon>CustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataViewerView.xaml.cs">
+      <DependentUpon>DataViewerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\DealerView.xaml.cs">
+      <DependentUpon>DealerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Instrument\InstrumentDetailView.xaml.cs">
+      <DependentUpon>InstrumentDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Instrument\InstrumentManagementView.xaml.cs">
+      <DependentUpon>InstrumentManagementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Instrument\InstrumentModelView.xaml.cs">
+      <DependentUpon>InstrumentModelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Instrument\InstrumentView.xaml.cs">
+      <DependentUpon>InstrumentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IssueView\IssueDetailView.xaml.cs">
+      <DependentUpon>IssueDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IssueView\IssueManagementView.xaml.cs">
+      <DependentUpon>IssueManagementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IssueView\IssueView.xaml.cs">
+      <DependentUpon>IssueView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoadingScreenView.xaml.cs">
+      <DependentUpon>LoadingScreenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModelSpecification\ModelFileEditView.xaml.cs">
+      <DependentUpon>ModelFileEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModelSpecification\ModelFileSelectorView.xaml.cs">
+      <DependentUpon>ModelFileSelectorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModelSpecification\ModelSpecificationView.xaml.cs">
+      <DependentUpon>ModelSpecificationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModelSpecification\ModelView.xaml.cs">
+      <DependentUpon>ModelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Instrument\NewEditInstrumentView.xaml.cs">
+      <DependentUpon>NewEditInstrumentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegisterView.xaml.cs">
+      <DependentUpon>RegisterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TestUI.xaml.cs">
+      <DependentUpon>TestUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ticket\TicketReportView.xaml.cs">
+      <DependentUpon>TicketReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ticket\TicketPendingView.xaml.cs">
+      <DependentUpon>TicketPendingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ticket\NewEditTicketView.xaml.cs">
+      <DependentUpon>NewEditTicketView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IssueView\NewIssueWindowView.xaml.cs">
+      <DependentUpon>NewIssueWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModelSpecification\SpecificationView.xaml.cs">
+      <DependentUpon>SpecificationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ticket\TicketDetailView.xaml.cs">
+      <DependentUpon>TicketDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ticket\TicketManagementView.xaml.cs">
+      <DependentUpon>TicketManagementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ticket\TicketView.xaml.cs">
+      <DependentUpon>TicketView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\UserManagementView.xaml.cs">
+      <DependentUpon>UserManagementView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\Instrument\SparePartManagementView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Instrument\PickSparePartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\User\EditAccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\User\AccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Customer\CustomerMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Customer\CustomerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomMessageBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DataViewerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Customer\DealerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Instrument\InstrumentDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Instrument\InstrumentManagementView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Instrument\InstrumentModelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Instrument\InstrumentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\IssueView\IssueDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\IssueView\IssueManagementView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\IssueView\IssueView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoadingScreenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Data\AppDbContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ViewModels\CustomMessageBoxViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Views\CustomMessageBoxView.xaml.cs">
+      <DependentUpon>CustomMessageBoxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\ModelSpecification\ModelFileEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModelSpecification\ModelFileSelectorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModelSpecification\ModelSpecificationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModelSpecification\ModelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Instrument\NewEditInstrumentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TestUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ticket\TicketReportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ticket\TicketPendingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ticket\NewEditTicketView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\IssueView\NewIssueWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModelSpecification\SpecificationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ticket\TicketDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ticket\TicketManagementView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ticket\TicketView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\User\UserManagementView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Migrations\202506050412194_fist.resx">
+      <DependentUpon>202506050412194_fist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202506070227137_EditTicketToHaveQuantitySparePart.resx">
+      <DependentUpon>202506070227137_EditTicketToHaveQuantitySparePart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202506071045109_SpareParts.resx">
+      <DependentUpon>202506071045109_SpareParts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202506090805327_AddExpense.resx">
+      <DependentUpon>202506090805327_AddExpense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202506090905466_FixExpense.resx">
+      <DependentUpon>202506090905466_FixExpense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="content\net40\App.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ComName.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="fujimax.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\background\bg1.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.5.2.1\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.5.2.1\build\MaterialDesignThemes.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+  <Import Project="..\packages\MaterialDesignThemes.5.2.1\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.5.2.1\build\MaterialDesignThemes.targets')" />
+</Project>

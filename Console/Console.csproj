@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CF15EC42-414F-474E-BA75-DE96DAE4C327}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Console</RootNamespace>
+    <AssemblyName>Console</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\OfflineDbContext.cs" />
+    <Compile Include="Data\OnlineDbContext.cs" />
+    <Compile Include="Entities\Constants\EntityName.cs" />
+    <Compile Include="Entities\CustomerEntities\Contact.cs" />
+    <Compile Include="Entities\CustomerEntities\Customer.cs" />
+    <Compile Include="Entities\ModelEntities\Country.cs" />
+    <Compile Include="Entities\ModelEntities\Instrument.cs" />
+    <Compile Include="Entities\ModelEntities\InstrumentLog.cs" />
+    <Compile Include="Entities\ModelEntities\InstrumentStatus.cs" />
+    <Compile Include="Entities\ModelEntities\Manufacturer.cs" />
+    <Compile Include="Entities\ModelEntities\Model.cs" />
+    <Compile Include="Entities\ModelEntities\ModelFile.cs" />
+    <Compile Include="Entities\ModelEntities\ModelGroup.cs" />
+    <Compile Include="Entities\ModelEntities\ModelSpecification.cs" />
+    <Compile Include="Entities\ModelEntities\ModelSpecificationGroup.cs" />
+    <Compile Include="Entities\ModelEntities\ModelType.cs" />
+    <Compile Include="Entities\TaskEntities\AppTask.cs" />
+    <Compile Include="Entities\TaskEntities\AppTaskStatus.cs" />
+    <Compile Include="Entities\TaskEntities\TaskFile.cs" />
+    <Compile Include="Entities\TaskEntities\TaskLog.cs" />
+    <Compile Include="Entities\TaskEntities\TaskPriority.cs" />
+    <Compile Include="Entities\TaskEntities\TaskTicketRelation.cs" />
+    <Compile Include="Entities\TaskEntities\TaskType.cs" />
+    <Compile Include="Entities\TicketEntities\Issue.cs" />
+    <Compile Include="Entities\TicketEntities\LastWeekPendingTicket.cs" />
+    <Compile Include="Entities\TicketEntities\LastWeekTicket.cs" />
+    <Compile Include="Entities\TicketEntities\Ticket.cs" />
+    <Compile Include="Entities\TicketEntities\TicketFile.cs" />
+    <Compile Include="Entities\TicketEntities\TicketLog.cs" />
+    <Compile Include="Entities\TicketEntities\TicketPriority.cs" />
+    <Compile Include="Entities\TicketEntities\TicketReport.cs" />
+    <Compile Include="Entities\TicketEntities\TicketStatus.cs" />
+    <Compile Include="Entities\TicketEntities\TicketType.cs" />
+    <Compile Include="Entities\UserEntity\SystemRole.cs" />
+    <Compile Include="Entities\UserEntity\User.cs" />
+    <Compile Include="Entities\UserEntity\UserRole.cs" />
+    <Compile Include="OnlineEntities\BaseEntity.cs" />
+    <Compile Include="OnlineEntities\CustomerEntities\Contact.cs" />
+    <Compile Include="OnlineEntities\CustomerEntities\Customer.cs" />
+    <Compile Include="OnlineEntities\CustomerEntities\Dealer.cs" />
+    <Compile Include="OnlineEntities\ModelEntities\Country.cs" />
+    <Compile Include="OnlineEntities\ModelEntities\Instrument.cs" />
+    <Compile Include="OnlineEntities\ModelEntities\InstrumentLog.cs" />
+    <Compile Include="OnlineEntities\ModelEntities\InstrumentStatus.cs" />
+    <Compile Include="OnlineEntities\ModelEntities\Manufacturer.cs" />
+    <Compile Include="OnlineEntities\ModelEntities\Model.cs" />
+    <Compile Include="OnlineEntities\ModelEntities\ModelFile.cs" />
+    <Compile Include="OnlineEntities\ModelEntities\ModelGroup.cs" />
+    <Compile Include="OnlineEntities\ModelEntities\ModelSpecification.cs" />
+    <Compile Include="OnlineEntities\ModelEntities\ModelSpecificationGroup.cs" />
+    <Compile Include="OnlineEntities\ModelEntities\ModelType.cs" />
+    <Compile Include="OnlineEntities\RefreshTokenInfo.cs" />
+    <Compile Include="OnlineEntities\TaskEntities\AppTask.cs" />
+    <Compile Include="OnlineEntities\TaskEntities\AppTaskStatus.cs" />
+    <Compile Include="OnlineEntities\TaskEntities\TaskComment.cs" />
+    <Compile Include="OnlineEntities\TaskEntities\TaskFile.cs" />
+    <Compile Include="OnlineEntities\TaskEntities\TaskLog.cs" />
+    <Compile Include="OnlineEntities\TaskEntities\TaskPriority.cs" />
+    <Compile Include="OnlineEntities\TaskEntities\TaskRelation.cs" />
+    <Compile Include="OnlineEntities\TaskEntities\TaskTag.cs" />
+    <Compile Include="OnlineEntities\TaskEntities\TaskTicketRelation.cs" />
+    <Compile Include="OnlineEntities\TaskEntities\TaskType.cs" />
+    <Compile Include="OnlineEntities\TicketEntities\Issue.cs" />
+    <Compile Include="OnlineEntities\TicketEntities\LastWeekPendingTicket.cs" />
+    <Compile Include="OnlineEntities\TicketEntities\LastWeekTicket.cs" />
+    <Compile Include="OnlineEntities\TicketEntities\Ticket.cs" />
+    <Compile Include="OnlineEntities\TicketEntities\TicketComment.cs" />
+    <Compile Include="OnlineEntities\TicketEntities\TicketFile.cs" />
+    <Compile Include="OnlineEntities\TicketEntities\TicketLog.cs" />
+    <Compile Include="OnlineEntities\TicketEntities\TicketPriority.cs" />
+    <Compile Include="OnlineEntities\TicketEntities\TicketReport.cs" />
+    <Compile Include="OnlineEntities\TicketEntities\TicketStatus.cs" />
+    <Compile Include="OnlineEntities\TicketEntities\TicketTag.cs" />
+    <Compile Include="OnlineEntities\TicketEntities\TicketType.cs" />
+    <Compile Include="OnlineEntities\UserEntity\ApplicationUser.cs" />
+    <Compile Include="OnlineEntities\UserEntity\Department.cs" />
+    <Compile Include="OnlineEntities\UserEntity\Notification.cs" />
+    <Compile Include="OnlineEntities\UserEntity\NotificationTag.cs" />
+    <Compile Include="OnlineEntities\UserEntity\SystemRole.cs" />
+    <Compile Include="OnlineEntities\UserEntity\UserPrivateDetail.cs" />
+    <Compile Include="OnlineEntities\UserEntity\UserPublicDetail.cs" />
+    <Compile Include="OnlineEntities\UserEntity\UserRole.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CachesServices.cs" />
+    <Compile Include="Services\DeleteDataServices.cs" />
+    <Compile Include="Services\SaveDataServices.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Functions\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+</Project>

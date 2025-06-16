@@ -1,0 +1,583 @@
+﻿<UserControl
+    x:Class="Client.Views.DealerView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:domain="clr-namespace:Client.Domain"
+    xmlns:local="clr-namespace:Client.Views"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="auto"
+    Height="auto"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    FontSize="14"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <domain:BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <GridSplitter
+            Grid.Column="1"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch" />
+        <!--  Dealer  -->
+        <materialDesign:Card
+            Grid.Column="0"
+            Margin="10,10,0,10"
+            Padding="15"
+            materialDesign:ElevationAssist.Elevation="Dp5"
+            UniformCornerRadius="30">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <!--  Dealer TITLE  -->
+                <DockPanel Grid.Row="0" HorizontalAlignment="Stretch">
+                    <!--  Icon  -->
+                    <materialDesign:PackIcon
+                        Width="25"
+                        Height="25"
+                        VerticalAlignment="Bottom"
+                        Foreground="{DynamicResource MaterialDesign.Brush.Primary}"
+                        Kind="Company" />
+                    <TextBlock
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        DockPanel.Dock="Left"
+                        FontWeight="Medium"
+                        Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                        Text="NHÀ PHÂN PHỐI" />
+                    <!--  Search Box with leading icon  -->
+                    <TextBox
+                        x:Name="SearchDealer"
+                        Height="auto"
+                        MinWidth="150"
+                        MaxWidth="300"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        materialDesign:HintAssist.FloatingOffset="0,-25"
+                        materialDesign:HintAssist.FloatingScale="1.15"
+                        materialDesign:HintAssist.Hint="Tìm kiếm"
+                        materialDesign:TextFieldAssist.HasClearButton="True"
+                        materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                        materialDesign:TextFieldAssist.LeadingIcon="Search"
+                        materialDesign:TextFieldAssist.LeadingIconSize="20"
+                        FontSize="14"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                </DockPanel>
+
+                <DataGrid
+                    Grid.Row="1"
+                    Margin="0,10,0,10"
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    FontSize="12"
+                    IsEnabled="{Binding IsDealerEnable}"
+                    IsReadOnly="{Binding IsDealerReadOnly}"
+                    ItemsSource="{Binding Dealers}"
+                    SelectedItem="{Binding SelectedDealer}"
+                    SelectionMode="Single">
+                    <DataGrid.Resources>
+                        <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <!--  Open Dealer Viewer  -->
+                        <DataGridTemplateColumn Header="Xem">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button
+                                        Command="{Binding DataContext.OpenDealerViewerCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                        CommandParameter="{Binding ViewDealer}"
+                                        Style="{StaticResource MaterialDesignFlatButton}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon
+                                                Width="20"
+                                                Height="20"
+                                                Margin="0,0,0,0"
+                                                VerticalAlignment="Center"
+                                                Kind="Search" />
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <!--  Dealers Name  -->
+                        <materialDesign:DataGridTextColumn
+                            MinWidth="150"
+                            MaxWidth="250"
+                            CanUserSort="True"
+                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                            Header="Tên">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}" TargetType="{x:Type TextBlock}">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                            <materialDesign:DataGridTextColumn.Binding>
+                                <Binding Path="Name" />
+                            </materialDesign:DataGridTextColumn.Binding>
+                        </materialDesign:DataGridTextColumn>
+                        <!--  Dealers Address  -->
+                        <materialDesign:DataGridTextColumn
+                            MinWidth="200"
+                            MaxWidth="250"
+                            CanUserSort="True"
+                            Header="Địa chỉ">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}" TargetType="{x:Type TextBlock}">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                            <DataGridTextColumn.EditingElementStyle>
+                                <Style BasedOn="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" TargetType="{x:Type TextBox}">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                </Style>
+                            </DataGridTextColumn.EditingElementStyle>
+                            <materialDesign:DataGridTextColumn.Binding>
+                                <Binding Path="Address" />
+                            </materialDesign:DataGridTextColumn.Binding>
+                        </materialDesign:DataGridTextColumn>
+                        <!--  Dealers Notes  -->
+                        <materialDesign:DataGridTextColumn
+                            MinWidth="200"
+                            MaxWidth="250"
+                            CanUserSort="True"
+                            Header="Ghi chú">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}" TargetType="{x:Type TextBlock}">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                            <DataGridTextColumn.EditingElementStyle>
+                                <Style BasedOn="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" TargetType="{x:Type TextBox}">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                    <Setter Property="AcceptsReturn" Value="True" />
+                                </Style>
+                            </DataGridTextColumn.EditingElementStyle>
+                            <materialDesign:DataGridTextColumn.Binding>
+                                <Binding Path="Notes" />
+                            </materialDesign:DataGridTextColumn.Binding>
+                        </materialDesign:DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!--  Buttons  -->
+                <StackPanel
+                    Grid.Row="2"
+                    VerticalAlignment="Bottom"
+                    Orientation="Horizontal">
+                    <Button
+                        x:Name="bnDealerNew"
+                        Margin="10"
+                        VerticalAlignment="Top"
+                        Content="Thêm mới"
+                        IsEnabled="{Binding IsDealerNewButtonEnable}" />
+                    <Button
+                        x:Name="bnDealerEdit"
+                        Width="75"
+                        Margin="10"
+                        VerticalAlignment="Top"
+                        Content="Sửa"
+                        IsEnabled="{Binding IsDealerEditButtonEnable}"
+                        Visibility="{Binding IsDealerReadOnly, Converter={StaticResource BoolToVis}}" />
+                    <Button
+                        x:Name="bnDealerSave"
+                        Width="75"
+                        Margin="10"
+                        VerticalAlignment="Top"
+                        Content="Lưu"
+                        Style="{StaticResource MaterialDesignOutlinedButton}"
+                        Visibility="{Binding IsDealerUserEditting, Converter={StaticResource BoolToVis}}" />
+                    <Button
+                        x:Name="bnDealerCancel"
+                        Width="75"
+                        Margin="10"
+                        VerticalAlignment="Top"
+                        Content="Hủy"
+                        Visibility="{Binding IsDealerUserEditting, Converter={StaticResource BoolToVis}}" />
+                    <Button
+                        x:Name="bnDealerDelete"
+                        Width="75"
+                        Margin="10"
+                        VerticalAlignment="Top"
+                        Content="Xóa"
+                        IsEnabled="{Binding IsDealerDeleteButtonEnable}" />
+                </StackPanel>
+
+            </Grid>
+        </materialDesign:Card>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <!--  Customer  -->
+            <materialDesign:Card
+                Grid.Row="0"
+                Margin="0,10,10,10"
+                Padding="15"
+                materialDesign:ElevationAssist.Elevation="Dp5"
+                UniformCornerRadius="30">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <!--  Customer TITLE  -->
+                    <DockPanel Grid.Row="0" HorizontalAlignment="Stretch">
+                        <materialDesign:PackIcon
+                            Width="25"
+                            Height="25"
+                            VerticalAlignment="Bottom"
+                            Foreground="{DynamicResource MaterialDesign.Brush.Primary}"
+                            Kind="Account" />
+                        <TextBlock
+                            Margin="5,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            DockPanel.Dock="Left"
+                            FontWeight="Medium"
+                            Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                            Text="Khách hàng" />
+                        <!--  Search Box with leading icon  -->
+                        <TextBox
+                            x:Name="SearchCustomer"
+                            Height="auto"
+                            MinWidth="150"
+                            MaxWidth="300"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            materialDesign:HintAssist.FloatingOffset="0,-25"
+                            materialDesign:HintAssist.FloatingScale="1.15"
+                            materialDesign:HintAssist.Hint="Tìm kiếm"
+                            materialDesign:TextFieldAssist.HasClearButton="True"
+                            materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                            materialDesign:TextFieldAssist.LeadingIcon="Search"
+                            materialDesign:TextFieldAssist.LeadingIconSize="20"
+                            FontSize="14"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    </DockPanel>
+
+                    <DataGrid
+                        Grid.Row="1"
+                        Margin="0,10,0,10"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        FontSize="12"
+                        IsEnabled="{Binding IsCustomerEnable}"
+                        IsReadOnly="{Binding IsCustomerReadOnly}"
+                        ItemsSource="{Binding Customers}"
+                        SelectedItem="{Binding SelectedCustomer}"
+                        SelectionMode="Single">
+                        <DataGrid.Resources>
+                            <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="FontSize" Value="14" />
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+                            <!--  Open Customer Viewer  -->
+                            <DataGridTemplateColumn Header="Xem">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button
+                                            Command="{Binding DataContext.OpenCustomerViewerCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                            CommandParameter="{Binding ViewCustomer}"
+                                            Style="{StaticResource MaterialDesignFlatButton}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon
+                                                    Width="20"
+                                                    Height="20"
+                                                    Margin="0,0,0,0"
+                                                    VerticalAlignment="Center"
+                                                    Kind="Search" />
+                                            </StackPanel>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--  Customers Name  -->
+                            <materialDesign:DataGridTextColumn
+                                MinWidth="150"
+                                MaxWidth="250"
+                                CanUserSort="True"
+                                EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                Header="Tên">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}" TargetType="{x:Type TextBlock}">
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <materialDesign:DataGridTextColumn.Binding>
+                                    <Binding Path="Name" />
+                                </materialDesign:DataGridTextColumn.Binding>
+                            </materialDesign:DataGridTextColumn>
+                            <!--  Customers Address  -->
+                            <materialDesign:DataGridTextColumn
+                                MinWidth="200"
+                                MaxWidth="250"
+                                CanUserSort="True"
+                                Header="Địa chỉ">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}" TargetType="{x:Type TextBlock}">
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style BasedOn="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" TargetType="{x:Type TextBox}">
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                                <materialDesign:DataGridTextColumn.Binding>
+                                    <Binding Path="Address" />
+                                </materialDesign:DataGridTextColumn.Binding>
+                            </materialDesign:DataGridTextColumn>
+                            <!--  Dealer  -->
+                            <materialDesign:DataGridComboBoxColumn
+                                Width="150"
+                                MinWidth="100"
+                                CanUserSort="True"
+                                DisplayMemberPath="Name"
+                                Header="Nhà phân phối"
+                                ItemsSourceBinding="{Binding DataContext.Dealers, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                SelectedItemBinding="{Binding Dealer}">
+                                <materialDesign:DataGridComboBoxColumn.ElementStyle>
+                                    <Style BasedOn="{StaticResource {ComponentResourceKey TypeInTargetAssembly={x:Type ComboBox}, ResourceId=MaterialDataGridComboBoxColumnEditingStyle}}" TargetType="ComboBox">
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                    </Style>
+                                </materialDesign:DataGridComboBoxColumn.ElementStyle>
+                                <materialDesign:DataGridComboBoxColumn.EditingElementStyle>
+                                    <Style BasedOn="{StaticResource {ComponentResourceKey TypeInTargetAssembly={x:Type ComboBox}, ResourceId=MaterialDataGridComboBoxColumnEditingStyle}}" TargetType="ComboBox">
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                    </Style>
+                                </materialDesign:DataGridComboBoxColumn.EditingElementStyle>
+                            </materialDesign:DataGridComboBoxColumn>
+                            <!--  Customers Notes  -->
+                            <materialDesign:DataGridTextColumn
+                                MinWidth="200"
+                                MaxWidth="250"
+                                CanUserSort="True"
+                                Header="Ghi chú">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}" TargetType="{x:Type TextBlock}">
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.EditingElementStyle>
+                                    <Style BasedOn="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" TargetType="{x:Type TextBox}">
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                        <Setter Property="AcceptsReturn" Value="True" />
+                                    </Style>
+                                </DataGridTextColumn.EditingElementStyle>
+                                <materialDesign:DataGridTextColumn.Binding>
+                                    <Binding Path="Notes" />
+                                </materialDesign:DataGridTextColumn.Binding>
+                            </materialDesign:DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <!--  Buttons  -->
+                    <StackPanel
+                        Grid.Row="2"
+                        VerticalAlignment="Bottom"
+                        Orientation="Horizontal">
+                        <Button
+                            x:Name="bnCustomerNew"
+                            Margin="10"
+                            VerticalAlignment="Top"
+                            Content="Tạo mới"
+                            IsEnabled="{Binding IsCustomerNewButtonEnable}" />
+                        <Button
+                            x:Name="bnCustomerEdit"
+                            Width="75"
+                            Margin="10"
+                            VerticalAlignment="Top"
+                            Content="Sửa"
+                            IsEnabled="{Binding IsCustomerEditButtonEnable}"
+                            Visibility="{Binding IsCustomerReadOnly, Converter={StaticResource BoolToVis}}" />
+                        <Button
+                            x:Name="bnCustomerSave"
+                            Width="75"
+                            Margin="10"
+                            VerticalAlignment="Top"
+                            Content="Lưu"
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
+                            Visibility="{Binding IsCustomerUserEditting, Converter={StaticResource BoolToVis}}" />
+                        <Button
+                            x:Name="bnCustomerCancel"
+                            Width="75"
+                            Margin="10"
+                            VerticalAlignment="Top"
+                            Content="Hủy"
+                            Visibility="{Binding IsCustomerUserEditting, Converter={StaticResource BoolToVis}}" />
+                        <Button
+                            x:Name="bnCustomerDelete"
+                            Width="75"
+                            Margin="10"
+                            VerticalAlignment="Top"
+                            Content="Xóa"
+                            IsEnabled="{Binding IsCustomerDeleteButtonEnable}" />
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+            <!--  Instrument  -->
+            <materialDesign:Card
+                Grid.Row="1"
+                Margin="0,0,10,10"
+                Padding="15"
+                materialDesign:ElevationAssist.Elevation="Dp5"
+                UniformCornerRadius="30">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0" HorizontalAlignment="Stretch">
+                        <materialDesign:PackIcon
+                            Width="25"
+                            Height="25"
+                            VerticalAlignment="Bottom"
+                            Foreground="{DynamicResource MaterialDesign.Brush.Primary}"
+                            Kind="Devices" />
+                        <TextBlock
+                            Margin="5,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            DockPanel.Dock="Left"
+                            FontWeight="Medium"
+                            Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                            Text="THIẾT BỊ LIÊN QUAN" />
+                    </DockPanel>
+
+                    <ScrollViewer Grid.Row="1">
+                        <ItemsControl ItemsSource="{Binding Instruments}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <materialDesign:Card
+                                        Padding="10"
+                                        HorizontalAlignment="Stretch"
+                                        materialDesign:ElevationAssist.Elevation="Dp5"
+                                        BorderThickness="2"
+                                        UniformCornerRadius="5">
+                                        <StackPanel
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"
+                                            Orientation="Vertical">
+
+                                            <DockPanel
+                                                Grid.Column="0"
+                                                Margin="5,0"
+                                                HorizontalAlignment="Stretch">
+                                                <materialDesign:PackIcon
+                                                    Width="20"
+                                                    Height="20"
+                                                    VerticalAlignment="Center"
+                                                    Foreground="{DynamicResource MaterialDesign.Brush.Primary}"
+                                                    Kind="Devices" />
+                                                <TextBlock
+                                                    Margin="5,0,0,0"
+                                                    VerticalAlignment="Center"
+                                                    FontWeight="Medium"
+                                                    Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                                    Text="{Binding Name}" />
+                                                <Button
+                                                    Grid.Column="1"
+                                                    Width="auto"
+                                                    Height="auto"
+                                                    Padding="5"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Center"
+                                                    cal:Message.Attach="[Event Click] = [Action ViewInstrument($eventArgs)]"
+                                                    Style="{StaticResource MaterialDesignFlatDarkButton}">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon
+                                                            Width="20"
+                                                            Height="20"
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"
+                                                            Kind="Search" />
+                                                    </StackPanel>
+                                                </Button>
+                                            </DockPanel>
+                                            <!--  Serial Number  -->
+                                            <StackPanel Margin="0,5" Orientation="Horizontal">
+                                                <materialDesign:PackIcon
+                                                    Width="20"
+                                                    Height="20"
+                                                    Margin="5,0"
+                                                    VerticalAlignment="Center"
+                                                    Foreground="{DynamicResource MaterialDesign.Brush.Primary}"
+                                                    Kind="Barcode" />
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                                    Text="{Binding SerialNumber}" />
+                                            </StackPanel>
+                                            <StackPanel Margin="0,5" Orientation="Horizontal">
+                                                <!--  Instrument Type  -->
+                                                <materialDesign:PackIcon
+                                                    Width="20"
+                                                    Height="20"
+                                                    Margin="5,0"
+                                                    VerticalAlignment="Center"
+                                                    Foreground="{DynamicResource MaterialDesign.Brush.Primary}"
+                                                    Kind="Sort" />
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                                    Text="{Binding Model.ModelType.Type}" />
+                                            </StackPanel>
+                                            <!--  Model  -->
+                                            <StackPanel Margin="0,5" Orientation="Horizontal">
+                                                <materialDesign:PackIcon
+                                                    Width="20"
+                                                    Height="20"
+                                                    Margin="5,0"
+                                                    VerticalAlignment="Center"
+                                                    Foreground="{DynamicResource MaterialDesign.Brush.Primary}"
+                                                    Kind="Devices" />
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                                    Text="{Binding Model.Name}" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </materialDesign:Card>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+
+    </Grid>
+</UserControl>

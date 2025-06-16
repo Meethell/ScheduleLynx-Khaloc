@@ -1,0 +1,158 @@
+﻿<Window
+    x:Class="Client.Views.LoginView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:domain="clr-namespace:Client.Domain"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:Client.Views"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:services="clr-namespace:Client.Services"
+    xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+    Title="MessageBoxWindow"
+    AllowsTransparency="True"
+    Background="Transparent"
+    BorderThickness="1"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    ResizeMode="NoResize"
+    ShowInTaskbar="False"
+    SizeToContent="WidthAndHeight"
+    TextElement.FontSize="10"
+    TextElement.FontWeight="Regular"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    Topmost="True"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Normal"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <domain:BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Window.Resources>
+    <Grid>
+        <materialDesign:Card
+            Width="400"
+            Padding="0"
+            UniformCornerRadius="15">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <materialDesign:ColorZone
+                    Height="50"
+                    materialDesign:ElevationAssist.Elevation="Dp4"
+                    Mode="PrimaryMid">
+                    <Grid>
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Image
+                                    Width="30"
+                                    Height="30"
+                                    Margin="20,0,5,0"
+                                    Source="/fujimax.ico" />
+                                <TextBlock
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontWeight="Medium"
+                                    Foreground="White"
+                                    Style="{StaticResource MaterialDesignTitleMediumTextBlock}"
+                                    Text="FUJIMED " />
+                            </StackPanel>
+
+                        </DockPanel>
+                        <Button
+                            x:Name="CloseApp"
+                            Margin="0,0,20,0"
+                            Padding="5"
+                            HorizontalAlignment="Right"
+                            Style="{StaticResource MaterialDesignPaperButton}">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    Width="20"
+                                    Height="20"
+                                    VerticalAlignment="Center"
+                                    Foreground="{DynamicResource MaterialDesign.Brush.Primary}"
+                                    Kind="Close" />
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+
+                </materialDesign:ColorZone>
+                <Grid Grid.Row="1" Margin="30,15,30,15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Margin="0,0,0,10"
+                        HorizontalAlignment="Center"
+                        Foreground="#6B6B6B"
+                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                        Text="Đăng Nhập" />
+                    <DockPanel Grid.Row="1" Margin="0,0,0,30">
+                        <materialDesign:PackIcon
+                            Width="25"
+                            Height="25"
+                            Margin="0,0,10,0"
+                            VerticalAlignment="Center"
+                            Foreground="{DynamicResource MaterialDesign.Brush.Primary}"
+                            Kind="Account" />
+                        <TextBox
+                            Padding="5,10"
+                            HorizontalAlignment="Stretch"
+                            materialDesign:HintAssist.FloatingOffset="0,-25"
+                            materialDesign:HintAssist.Hint="Tên đăng nhập"
+                            materialDesign:TextFieldAssist.HasClearButton="True"
+                            FontSize="14"
+                            IsEnabled="{Binding IsEnable}"
+                            Style="{StaticResource MaterialDesignFilledTextBox}"
+                            Text="{Binding Login.Name}"
+                            TextWrapping="Wrap" />
+                    </DockPanel>
+                    <DockPanel Grid.Row="2">
+                        <materialDesign:PackIcon
+                            Width="25"
+                            Height="25"
+                            Margin="0,0,10,0"
+                            VerticalAlignment="Center"
+                            Foreground="{DynamicResource MaterialDesign.Brush.Primary}"
+                            Kind="Lock" />
+                        <PasswordBox
+                            Padding="5,10"
+                            HorizontalAlignment="Stretch"
+                            materialDesign:HintAssist.FloatingOffset="0,-25"
+                            materialDesign:HintAssist.Hint="Mật khẩu"
+                            services:PasswordHelper.Attach="True"
+                            services:PasswordHelper.BoundPassword="{Binding Login.Password, Mode=TwoWay}"
+                            FontSize="14"
+                            IsEnabled="{Binding IsEnable}"
+                            Style="{StaticResource MaterialDesignFilledRevealPasswordBox}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="KeyDown">
+                                    <cal:ActionMessage MethodName="LoginCommand">
+                                        <cal:Parameter Value="$eventArgs" />
+                                    </cal:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </PasswordBox>
+                    </DockPanel>
+                    <Button
+                        x:Name="LoginCommand"
+                        Grid.Row="3"
+                        Margin="0,30,0,0"
+                        HorizontalAlignment="Center"
+                        Content="Đăng nhập"
+                        Foreground="White"
+                        IsEnabled="{Binding IsEnable}"
+                        Style="{StaticResource MaterialDesignRaisedButton}" />
+                </Grid>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</Window>
