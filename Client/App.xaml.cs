@@ -34,12 +34,12 @@ namespace Client
             ConfigureServices(serviceCollection);
             ServiceProvider = serviceCollection.BuildServiceProvider();
 
-            // Tạo thư mục D:\FujimedData nếu chưa tồn tại
-            string dbFolder = @"D:\FujimedData";
+            // Tạo thư mục D:\KhaLocData nếu chưa tồn tại
+            string dbFolder = @"D:\KhaLocData";
             if (!System.IO.Directory.Exists(dbFolder))
                 System.IO.Directory.CreateDirectory(dbFolder);
-            // Tạo thư mục D:\FujimedData\DbBackups nếu chưa tồn tại
-            string dbBackupFolder = @"D:\FujimedData\DbBackups";
+            // Tạo thư mục D:\KhaLocData\DbBackups nếu chưa tồn tại
+            string dbBackupFolder = @"D:\KhaLocData\DbBackups";
             if (!System.IO.Directory.Exists(dbBackupFolder))
                 System.IO.Directory.CreateDirectory(dbBackupFolder);
 

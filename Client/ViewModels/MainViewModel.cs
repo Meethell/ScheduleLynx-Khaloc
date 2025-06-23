@@ -122,8 +122,8 @@ namespace Client.ViewModels
                 Register = new Register
                 {
                     Name = "Admin",
-                    Password = "FujiAdmin",
-                    ConfirmPassword = "FujiAdmin"
+                    Password = "KlAdmin",
+                    ConfirmPassword = "KlAdmin"
                 };
 
                 // Tạo user Admin cho lần đầu tiên
@@ -251,7 +251,7 @@ namespace Client.ViewModels
             //Custom Messagebox!
             var customMessageBoxViewModel = new CustomMessageBoxViewModel
             {
-                Message = "Thoát FUJIMED Quản Lý",
+                Message = "Thoát KHẢ LỘC Quản Lý",
                 TxtMessage = "Bạn có muốn thoát phần mềm không?",
                 IsConfirmation = true
             };

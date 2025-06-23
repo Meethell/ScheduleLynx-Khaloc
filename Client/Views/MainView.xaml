@@ -9,7 +9,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Name="mainWindow"
-    Title="Fujimed Quản lý"
+    Title="Khả Lộc Quản lý"
     Width="1280"
     Height="720"
     FontFamily="{DynamicResource MaterialDesignFont}"
@@ -129,7 +129,7 @@
                 Mode="PrimaryMid">
                 <!--  Tieu de pham mem  -->
                 <StackPanel Grid.Column="0">
-                    <Image VerticalAlignment="Center" Source="/Resources/ComName.jpg" />
+                    <Image VerticalAlignment="Center" Source="/Resources/Kha Loc Logo.jpg" />
                     <!--  menu grid  -->
                     <Grid Height="55">
                         <TextBlock

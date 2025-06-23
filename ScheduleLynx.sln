@@ -5,7 +5,7 @@ VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{B240067C-C1C3-4809-AC0B-3815AF3DDC33}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FUJIMED", "FUJIMED\FUJIMED.vdproj", "{6FFA83CD-7CB0-02E6-A016-855491E16FA1}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "KHALOC", "KHALOC\KHALOC.vdproj", "{B1C0296D-E0B2-A742-2020-7104612242BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,11 +23,10 @@ Global
 		{B240067C-C1C3-4809-AC0B-3815AF3DDC33}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B240067C-C1C3-4809-AC0B-3815AF3DDC33}.Release|x64.ActiveCfg = Release|x64
 		{B240067C-C1C3-4809-AC0B-3815AF3DDC33}.Release|x64.Build.0 = Release|x64
-		{6FFA83CD-7CB0-02E6-A016-855491E16FA1}.Debug|Any CPU.ActiveCfg = Release
-		{6FFA83CD-7CB0-02E6-A016-855491E16FA1}.Debug|Any CPU.Build.0 = Release
-		{6FFA83CD-7CB0-02E6-A016-855491E16FA1}.Debug|x64.ActiveCfg = Debug
-		{6FFA83CD-7CB0-02E6-A016-855491E16FA1}.Release|Any CPU.ActiveCfg = Release
-		{6FFA83CD-7CB0-02E6-A016-855491E16FA1}.Release|x64.ActiveCfg = Release
+		{B1C0296D-E0B2-A742-2020-7104612242BE}.Debug|Any CPU.ActiveCfg = Debug
+		{B1C0296D-E0B2-A742-2020-7104612242BE}.Debug|x64.ActiveCfg = Debug
+		{B1C0296D-E0B2-A742-2020-7104612242BE}.Release|Any CPU.ActiveCfg = Release
+		{B1C0296D-E0B2-A742-2020-7104612242BE}.Release|x64.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
