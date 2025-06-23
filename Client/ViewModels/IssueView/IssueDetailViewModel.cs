@@ -187,7 +187,8 @@ namespace Client.ViewModels
                     IsConfirmation = true
                 };
                 var windowManager = new WindowManager();
-                if (await windowManager.ShowDialogAsync(customMessageBoxViewModel) == true)
+                await windowManager.ShowDialogAsync(customMessageBoxViewModel);
+                if (customMessageBoxViewModel.DialogResult == MessageBoxResult.Yes)
                 {
                     // Xóa Issue khỏi database
                     await new DeleteDataServices().DeleteIssueAsync(Issue);
