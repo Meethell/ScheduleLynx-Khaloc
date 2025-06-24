@@ -45,6 +45,13 @@
                         IsChecked="{Binding IsDealerViewChecked}"
                         Style="{StaticResource MaterialDesignTabRadioButton}" />
                     <RadioButton
+                        x:Name="ModelCustomerView"
+                        Height="30"
+                        BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}"
+                        Content="Thống kê Model"
+                        IsChecked="{Binding IsModelCustomerViewChecked}"
+                        Style="{StaticResource MaterialDesignTabRadioButton}" />
+                    <RadioButton
                         Height="30"
                         BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}"
                         Content="Thông tin Dealer"
@@ -58,6 +65,7 @@
                         IsChecked="{Binding IsCustomerDetailChecked}"
                         Style="{StaticResource MaterialDesignTabRadioButton}"
                         Visibility="{Binding IsCustomerDetailChecked, Converter={StaticResource BoolToVis}}" />
+
                 </StackPanel>
 
                 <ContentControl

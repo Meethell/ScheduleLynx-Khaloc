@@ -48,6 +48,16 @@ namespace Client.ViewModels
                 NotifyOfPropertyChange(() => IsCustomerDetailChecked);
             }
         }
+        private bool _isModelCustomerViewChecked = false;
+        public bool IsModelCustomerViewChecked
+        {
+            get { return _isModelCustomerViewChecked; }
+            set
+            {
+                _isModelCustomerViewChecked = value;
+                NotifyOfPropertyChange(() => IsModelCustomerViewChecked);
+            }
+        }
 
         // Constructor
         private readonly MainViewModel _mainViewModel;
@@ -76,6 +86,16 @@ namespace Client.ViewModels
             }
             IsDealerViewChecked = true;
             await ActivateItemAsync(new DealerViewModel(_mainViewModel, this));
+        }
+        public async Task ModelCustomerView()
+        {
+            if (ActiveItem != null)
+            {
+                await DeactivateItemAsync(ActiveItem, true);
+                (ActiveItem as IDisposable)?.Dispose();
+            }
+            IsModelCustomerViewChecked = true;
+            await ActivateItemAsync(new ModelCustomerViewModel(_mainViewModel, this));
         }
     }
 }
