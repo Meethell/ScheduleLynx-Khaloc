@@ -399,9 +399,9 @@ namespace Client.ViewModels
                 TicketOverdueCount = TicketsOverdue.Count;
                 TicketsPending = new ObservableCollection<Ticket>(Tickets.Where(t => t.Status.Status != "Đã đóng" && t.Status.Status != "Đã hủy"));
                 TicketPendingCount = TicketsPending.Count;
-                TicketsMaintenance = new ObservableCollection<Ticket>(Tickets.Where(t => t.Type.Type == "Bảo trì định kỳ"));
+                TicketsMaintenance = new ObservableCollection<Ticket>(Tickets.Where(t => t.Type.Type == "Bảo trì"));
                 TicketMaintenanceCount = TicketsMaintenance.Count;
-                TicketsRepair = new ObservableCollection<Ticket>(Tickets.Where(t => t.Type.Type != "Bảo trì định kỳ" && t.Type.Type != "Lắp đặt mới"));
+                TicketsRepair = new ObservableCollection<Ticket>(Tickets.Where(t => t.Type.Type != "Sửa chữa"));
                 TicketRepairCount = TicketsRepair.Count;
                 TicketsInstall = new ObservableCollection<Ticket>(Tickets.Where(t => t.Type.Type == "Lắp đặt mới"));
                 TicketInstallCount = TicketsInstall.Count;
